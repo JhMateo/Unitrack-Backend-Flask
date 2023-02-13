@@ -47,7 +47,7 @@ Para iniciar cualquier proyecto, navegue hasta el directorio del mismo y ejecute
 
 ### Ejecución con docker compose
 
-Debe tener instalado docker y docker compose en su máquina. Además, debe crear un archivo `.env` con las variables que estan en `.env.example` para cada proyecto y asignar como host de la base de datos la `IP` de su máquina, como puerto `9091` y como usuario y contraseña `admin` (estos valores están establecidos en el archivo `docker-compose.yml` y puede cambiarlos si desea). 
+Debe tener instalado docker y docker compose en su máquina. Además, debe crear un archivo `.env` con las variables que estan en `.env.example` para cada proyecto y asignar los valores de conexión a la base de datos (estos valores están establecidos en el archivo `docker-compose.yml` y puede cambiarlos si desea), el host es la `IP` de su máquina. 
 
 Una vez realizado lo anterio, navegue hasta el directorio del repositorio y ejecute este comando:
 
