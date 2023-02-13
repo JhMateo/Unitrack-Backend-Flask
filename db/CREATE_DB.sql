@@ -8,7 +8,7 @@ CREATE TABLE stop(
     id SERIAL NOT NULL,
     name VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
-    image VARCHAR(255),
+    image VARCHAR(255) NOT NULL,
     latitude FLOAT NOT NULL,
     longitude FLOAT NOT NULL,
     PRIMARY KEY (id)
