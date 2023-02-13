@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  timetable:
+    build: ./timetable-service
+    container_name: timetable-service
+    restart: always
+    environment:
+      - APP_NAME=timetable-service
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  
+  stop-timetable:
+      build: ./stop-timetable-service
+      container_name: stop-timetable-service
+      restart: always
+      environment:
+        - APP_NAME=stop-timetable-service
+      ports:
+        - "8001:8000"
+      depends_on:
+        - db
+
+  stop:
+    build: ./stop-service
+    container_name: stop-service
+    restart: always
+    environment:
+      - APP_NAME=stop-service
+    ports:
+      - "8002:8000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    restart: always
+    container_name: unitrack-db
+    hostname: myhost
+    environment:
+      POSTGRES_DB: unitrackdb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - ./db/volumes:/var/lib/postgresql/data
+      - ./db/CREATE_DB.sql:/docker-entrypoint-initdb.d/CREATE_DB.sql
+      - ./db/INSERT_DB.sql:/docker-entrypoint-initdb.d/INSERT_DB.sql
+    ports:
+      - "9091:5432"
