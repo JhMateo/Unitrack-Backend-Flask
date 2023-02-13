@@ -21,8 +21,6 @@ WORKDIR $APP
 # Python dependencies
 COPY requirements.txt .
 
-COPY .env.production .env
-
 # Install Python dependencies
 RUN pip install -r requirements.txt
 
