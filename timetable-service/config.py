@@ -1,6 +1,6 @@
 import os
+
 from dotenv import load_dotenv
-import dotenv
 
 dotenv_file_path = os.path.join(os.path.dirname(__file__), '.env')
 if os.path.exists(dotenv_file_path):
