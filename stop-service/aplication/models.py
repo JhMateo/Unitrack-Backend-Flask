@@ -11,7 +11,7 @@ class Stop(db.Model):
     longitude = db.Column(db.Float, unique=False, nullable=False)
 
     def to_json(self):
-        return{
+        return {
             'id': self.id,
             'name': self.name,
             'description': self.description,

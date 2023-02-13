@@ -1,7 +1,7 @@
-from . import stop_api_blueprint
-from .. import db
-from ..models import Stop
 from flask import jsonify, request
+
+from . import stop_api_blueprint
+from ..models import Stop
 
 
 @stop_api_blueprint.route('/', methods=['POST'])

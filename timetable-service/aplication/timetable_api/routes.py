@@ -1,7 +1,7 @@
+from flask import jsonify
+
 from . import timetable_api_blueprint
-from .. import db
 from ..models import Timetable
-from flask import jsonify, request
 
 
 @timetable_api_blueprint.route('/', methods=['GET'])

@@ -7,7 +7,7 @@ class Timetable(db.Model):
     hour = db.Column(db.Time, unique=False, nullable=False)
 
     def to_json(self):
-        return{
+        return {
             'id': self.id,
             'hour': self.hour.strftime('%H:%M:%S')
         }
