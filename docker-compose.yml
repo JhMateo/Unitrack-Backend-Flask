@@ -6,33 +6,36 @@ services:
     container_name: timetable-service
     restart: always
     environment:
-      - APP_NAME=timetable-service
+      DATABASE_URI: postgresql://admin:admin@db:5432/unitrackdb
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
   
   stop-timetable:
       build: ./stop-timetable-service
       container_name: stop-timetable-service
       restart: always
       environment:
-        - APP_NAME=stop-timetable-service
+        DATABASE_URI: postgresql://admin:admin@db:5432/unitrackdb
       ports:
         - "8001:8000"
       depends_on:
-        - db
+        db:
+          condition: service_healthy
 
   stop:
     build: ./stop-service
     container_name: stop-service
     restart: always
     environment:
-      - APP_NAME=stop-service
+      DATABASE_URI: postgresql://admin:admin@db:5432/unitrackdb
     ports:
       - "8002:8000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
     image: postgres:latest
@@ -49,3 +52,8 @@ services:
       - ./db/INSERT_DB.sql:/docker-entrypoint-initdb.d/INSERT_DB.sql
     ports:
       - "9091:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "admin", "-d", "unitrackdb", "-h", "localhost", "-p", "5432"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
